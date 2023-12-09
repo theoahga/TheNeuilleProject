@@ -2,9 +2,10 @@ package model;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.theoahga.model.Sensor;
-import com.theoahga.model.SensorFactory;
+import com.theoahga.model.sensor.SensorImpl;
+import com.theoahga.model.sensor.SensorFactory;
 import com.theoahga.exception.ZeroException;
+import com.theoahga.model.sensor.api.Sensor;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -27,10 +28,10 @@ public class SensorFactoryTest {
     JsonNode jsonSensor = objectMapper.readTree(sensor.getBytes());
 
     Sensor newSensor = SensorFactory.createSensorFromJson(jsonSensor);
-    assertEquals(newSensor.getId(), "cid-1");
-    assertEquals(newSensor.getCoordinate().getLattitude(), 45, 5);
-    assertEquals(newSensor.getCoordinate().getLongitude(), 4, 5);
-    assertEquals(newSensor.getAddress(), "Rue du test Unitaire");
+    assertEquals("cid-1", newSensor.getId());
+    assertEquals(Double.valueOf(45), newSensor.getCoordinate().y, 5);
+    assertEquals(Double.valueOf(4), newSensor.getCoordinate().x, 5);
+    assertEquals("Rue du test Unitaire", newSensor.getAddress());
   }
 
   @Test
@@ -53,14 +54,14 @@ public class SensorFactoryTest {
     Sensor s1 = sensorsList.get(0);
     Sensor s2 = sensorsList.get(1);
 
-    assertEquals(s1.getId(), "cid-1");
-    assertEquals(s1.getCoordinate().getLattitude(), 45, 5);
-    assertEquals(s1.getCoordinate().getLongitude(), 4, 5);
-    assertEquals(s1.getAddress(), "Rue du test Unitaire");
+    assertEquals("cid-1", s1.getId());
+    assertEquals(Double.valueOf(45), s1.getCoordinate().y, 5);
+    assertEquals(Double.valueOf(4), s1.getCoordinate().x, 5);
+    assertEquals("Rue du test Unitaire", s1.getAddress());
 
-    assertEquals(s2.getId(), "cid-2");
-    assertEquals(s2.getCoordinate().getLattitude(), 46, 5);
-    assertEquals(s2.getCoordinate().getLongitude(), 7, 5);
-    assertEquals(s2.getAddress(), "Chez JB");
+    assertEquals("cid-2", s2.getId());
+    assertEquals(Double.valueOf(46), s2.getCoordinate().y, 5);
+    assertEquals(Double.valueOf(7), s2.getCoordinate().x, 5);
+    assertEquals("Chez JB", s2.getAddress());
   }
 }

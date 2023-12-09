@@ -1,7 +1,8 @@
-package com.theoahga.model;
+package com.theoahga.model.sensor;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.theoahga.exception.ZeroException;
+import com.theoahga.model.sensor.api.Sensor;
 import com.theoahga.utils.CheckUtils;
 
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ public class SensorFactory {
 
   public static Sensor createSensorFromJson(JsonNode json) {
     String id = json.get("id").asText();
-    int lat = json.get("lat").asInt();
-    int lon = json.get("lon").asInt();
+    double lat = json.get("lat").asDouble();
+    double lon = json.get("lon").asDouble();
     String address = json.get("address").asText();
 
     CheckUtils.notNull(id);
@@ -31,6 +32,6 @@ public class SensorFactory {
     CheckUtils.notNull(lon);
     CheckUtils.notNull(address);
 
-    return new Sensor(id, address, new SensorCoordinate(lat, lon), new SensorState());
+    return new SensorImpl(id, address, new SensorCoordinate(lat, lon), new SensorStateImpl());
   }
 }

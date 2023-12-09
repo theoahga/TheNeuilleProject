@@ -2,9 +2,10 @@ package com.theoahga.http;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.theoahga.exception.GetRequestException;
-import com.theoahga.model.Sensor;
-import com.theoahga.model.SensorFactory;
+import com.theoahga.model.sensor.SensorImpl;
+import com.theoahga.model.sensor.SensorFactory;
 import com.theoahga.exception.ZeroException;
+import com.theoahga.model.sensor.api.Sensor;
 
 import java.io.IOException;
 import java.util.List;

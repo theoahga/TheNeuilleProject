@@ -31,6 +31,27 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-main</artifactId>
+            <version>29.1</version>
+        </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>geosolutions-releases</id>
+            <url>https://repo.osgeo.org/repository/release/</url>
+        </repository>
+        <repository>
+            <id>geosolutions-snapshots</id>
+            <url>https://repo.osgeo.org/repository/snapshot/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

@@ -1,15 +1,15 @@
-package com.theoahga.model;
+package com.theoahga.model.sensor;
 
-import java.net.URI;
-import java.net.http.HttpRequest;
+import com.theoahga.model.sensor.api.Sensor;
+import com.theoahga.model.sensor.api.SensorState;
 
-public class Sensor {
+public class SensorImpl implements Sensor {
   private final String id;
   private final String address;
   private final SensorCoordinate coordinate;
   private SensorState state;
 
-  public Sensor(
+  public SensorImpl(
       String id, String address, SensorCoordinate sensorCoordinate, SensorState sensorState) {
     this.id = id;
     this.address = address;
