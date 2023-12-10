@@ -1,5 +1,6 @@
 package com.theoahga.model.sensor;
 
+import com.theoahga.model.fire.api.TypeFire;
 import com.theoahga.model.sensor.api.Sensor;
 import com.theoahga.model.sensor.api.SensorState;
 
@@ -27,6 +28,21 @@ public class SensorImpl implements Sensor {
 
   public SensorState getState() {
     return state;
+  }
+
+  @Override
+  public void setIntensity(int intensity) {
+    this.state.setIntensity(intensity);
+  }
+
+  @Override
+  public void setType(TypeFire type) {
+    this.state.setType(type);
+  }
+
+  @Override
+  public void setState(SensorState state) {
+    this.state = state;
   }
 
   public String getAddress() {

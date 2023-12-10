@@ -1,10 +1,12 @@
 package com.theoahga.model.fire.api;
 
 public enum TypeFire {
+  OFF(0),
   GAZ(1),
   SOLIDE(2),
   LIQUID(3),
   METALS(4);
+
 
   private final int associatedInt;
 

@@ -1,5 +1,6 @@
 package com.theoahga.model.sensor.api;
 
+import com.theoahga.model.fire.api.TypeFire;
 import org.locationtech.jts.geom.Coordinate;
 
 public interface Sensor {
@@ -10,4 +11,9 @@ public interface Sensor {
   String getAddress();
 
   SensorState getState();
+  void setIntensity(int intensity);
+
+  void setType(TypeFire type);
+
+  void setState(SensorState state);
 }

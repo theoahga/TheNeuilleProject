@@ -16,6 +16,7 @@ public class EvaluationTask extends TimerTask {
   private Map<String, List<Coordinate>> squareBound = TestUtils.getSquareBounds();
   private EvaluationManager evaluationManager;
   private int failCounter = 0;
+  private int counter = 0;
 
   public EvaluationTask() {
     evaluationManager = new EvaluationManager(sensors, squareBound);
@@ -26,6 +27,8 @@ public class EvaluationTask extends TimerTask {
     try {
       checkPrerequisites();
       evaluationManager.manageAndPublish();
+      System.out.println(counter+" :");
+      counter ++;
     } catch (GetRequestException | ZeroException e) {
       System.out.println(e.fillInStackTrace());
     }

@@ -7,4 +7,6 @@ public interface Fire {
   Coordinate getCoordinate();
 
   Measure getRadius();
+
+  void setRadius(Measure radius1);
 }

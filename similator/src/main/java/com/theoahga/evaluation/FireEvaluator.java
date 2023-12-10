@@ -9,28 +9,49 @@ import org.geotools.measure.Measure;
 import org.locationtech.jts.geom.Coordinate;
 import si.uom.SI;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.sql.SQLOutput;
+import java.util.*;
+
+import static com.theoahga.evaluation.values.FireEvaluatorValues.*;
 
 public class FireEvaluator implements Evaluator {
-  public static Double FIRE_CREATION_PROB =
-      Double.valueOf(System.getProperty("fire.creation.on.square.probability"));
-  public static double FIRE_CREATION_RADIUS_MIN =
-      Double.valueOf(System.getProperty("fire.creation.radius.min.metter"));
-  public static double FIRE_CREATION_RADIUS_MAX =
-      Double.valueOf(System.getProperty("fire.creation.radius.max.metter"));
+
   private Map<String, List<Coordinate>> fireSquareBounds;
   private List<Fire> fires;
 
-  public FireEvaluator(Map<String, List<Coordinate>> fireSquareBounds) {
+  public FireEvaluator(Map<String, List<Coordinate>> fireSquareBounds, List<Fire> fires) {
     this.fireSquareBounds = fireSquareBounds;
+    this.fires = fires;
   }
 
   @Override
-  public List<Sensor> evaluate() {
+  public Set<Object> evaluate() {
+    Set<Fire> updateFire = new HashSet<>();
 
-    return null;
+    // TODO: reafactor
+    for (Map.Entry<String, List<Coordinate>> entry : fireSquareBounds.entrySet()){
+      if (wantCreateAFire()){
+        Fire newFire = buildFire(entry.getValue());
+        updateFire.add(newFire);
+      }
+    }
+
+    List<Fire> firesqsd = evaluateAllFires();
+
+    updateFire.addAll(firesqsd);
+
+    return (Set)updateFire;
+  }
+
+  private List<Fire> evaluateAllFires() {
+    List<Fire> firesUpdated = new ArrayList<>();
+    for (Fire fire : fires){
+      fire.setRadius(new Measure((fire.getRadius().doubleValue()*1.5), SI.METRE));
+      firesUpdated.add(fire);
+      // TODO : look for inetervention related to this fire
+    }
+
+    return firesUpdated;
   }
 
   private boolean wantCreateAFire() {
@@ -41,11 +62,13 @@ public class FireEvaluator implements Evaluator {
     return false;
   }
 
-  private void buildFire(List<Coordinate> squareBounds) {
+  private Fire buildFire(List<Coordinate> squareBounds) {
     FireCoordinate fireCoordinate = getRandomCoordinateInSquare(squareBounds);
     Measure radius = getRandomFistRadius();
     Fire newFire = new FireImpl(fireCoordinate, radius);
     fires.add(newFire);
+
+    return newFire;
   }
 
   private FireCoordinate getRandomCoordinateInSquare(List<Coordinate> squareBounds) {

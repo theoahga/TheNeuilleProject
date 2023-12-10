@@ -22,4 +22,19 @@ public class FireImpl implements Fire {
   public Measure getRadius() {
     return radius;
   }
+
+  @Override
+  public void setRadius(Measure radius1) {
+    this.radius = radius1;
+  }
+
+  @Override
+  public String toString() {
+    return "Fire{"
+            + "coordinate="
+            + coordinate
+            + ", radius="
+            + radius
+            + '}';
+  }
 }
