@@ -25,4 +25,9 @@ public class SensorController {
   public ResponseEntity<List<Sensor>> getAll(@RequestParam Long id) {
     return ResponseEntity.ok(sensorRepository.getAllByIdVille(id));
   }
+
+  @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<List<Sensor>> getAll() {
+    return ResponseEntity.ok(sensorRepository.getAllBy());
+  }
 }
