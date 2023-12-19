@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface SensorRepository extends CrudRepository<Sensor, Long> {
   List<Sensor> getAllByIdVille(Long idVille);
+
+  List<Sensor> getAllBy();
 }

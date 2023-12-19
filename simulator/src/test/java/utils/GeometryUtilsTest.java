@@ -28,7 +28,7 @@ public class GeometryUtilsTest {
         Measure radius = new Measure(1, SI.METRE);
         Fire fire = new FireImpl(fireCoordinate,radius);
 
-        Sensor sensor = new SensorImpl("","",new SensorCoordinate(45.78381284704242, 4.8698785011860775),new SensorStateImpl());
+        Sensor sensor = new SensorImpl("",new SensorCoordinate(45.78381284704242, 4.8698785011860775),new SensorStateImpl());
 
         Measure distanceInMetter = computeDistance(fire,sensor);
         assertEquals(91.48211410413758,distanceInMetter.doubleValue(), 0);

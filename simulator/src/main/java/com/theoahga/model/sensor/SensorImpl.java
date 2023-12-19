@@ -6,14 +6,12 @@ import com.theoahga.model.sensor.api.SensorState;
 
 public class SensorImpl implements Sensor {
   private final String id;
-  private final String address;
   private final SensorCoordinate coordinate;
   private SensorState state;
 
   public SensorImpl(
-      String id, String address, SensorCoordinate sensorCoordinate, SensorState sensorState) {
+      String id, SensorCoordinate sensorCoordinate, SensorState sensorState) {
     this.id = id;
-    this.address = address;
     this.coordinate = sensorCoordinate;
     this.state = sensorState;
   }
@@ -45,18 +43,11 @@ public class SensorImpl implements Sensor {
     this.state = state;
   }
 
-  public String getAddress() {
-    return address;
-  }
-
   @Override
   public String toString() {
     return "Sensor{"
         + "id='"
         + id
-        + '\''
-        + ", address='"
-        + address
         + '\''
         + ", coordinate="
         + coordinate
