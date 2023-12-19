@@ -6,25 +6,23 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @RestController()
 @RequestMapping(path = "/ville")
 public class VilleController {
 
-  private final VilleRepository villeRepository;
+    private final VilleRepository villeRepository;
 
-  public VilleController(VilleRepository villeRepository) {
-    this.villeRepository = villeRepository;
-  }
+    public VilleController(VilleRepository villeRepository) {
+        this.villeRepository = villeRepository;
+    }
 
-  @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<List<Ville>> getAll() {
-    List<Ville> villes = villeRepository.findBy();
-    return ResponseEntity.ok(villes);
-  }
+    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Ville>> getAll() {
+        List<Ville> villes = villeRepository.findBy();
+        return ResponseEntity.ok(villes);
+    }
 }
