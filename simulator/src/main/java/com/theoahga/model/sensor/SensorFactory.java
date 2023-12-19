@@ -22,16 +22,14 @@ public class SensorFactory {
   }
 
   public static Sensor createSensorFromJson(JsonNode json) {
-    String id = json.get("id").asText();
+    String id = json.get("cid").asText();
     double lat = json.get("lat").asDouble();
     double lon = json.get("lon").asDouble();
-    String address = json.get("address").asText();
 
     CheckUtils.notNull(id);
     CheckUtils.notNull(lat);
     CheckUtils.notNull(lon);
-    CheckUtils.notNull(address);
 
-    return new SensorImpl(id, address, new SensorCoordinate(lat, lon), new SensorStateImpl());
+    return new SensorImpl(id, new SensorCoordinate(lat, lon), new SensorStateImpl());
   }
 }

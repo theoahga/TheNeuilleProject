@@ -11,7 +11,7 @@ public class Simulator {
   public static void main(String[] args) throws IOException, InterruptedException, ZeroException {
     PropertyUtils.load();
 
-    EvaluationTimer evaluationTimer = new EvaluationTimer(2);
+    EvaluationTimer evaluationTimer = new EvaluationTimer(Integer.parseInt(System.getProperty("evaluation.interval.second")));
     evaluationTimer.start();
   }
 }

@@ -7,12 +7,13 @@ import com.theoahga.model.sensor.api.Sensor;
 import com.theoahga.utils.TestUtils;
 import org.locationtech.jts.geom.Coordinate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TimerTask;
 
 public class EvaluationTask extends TimerTask {
-  private List<Sensor> sensors = TestUtils.getTestSensors();
+  private List<Sensor> sensors = new ArrayList<>();
   private Map<String, List<Coordinate>> squareBound = TestUtils.getSquareBounds();
   private EvaluationManager evaluationManager;
   private int failCounter = 0;
