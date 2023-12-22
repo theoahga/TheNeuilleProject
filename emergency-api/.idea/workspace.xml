@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0e3986e-2faa-4236-a43e-5120fb00bf45" name="Changes" comment="" />
+    <list default="true" id="a0e3986e-2faa-4236-a43e-5120fb00bf45" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Simulator-view/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Simulator-view/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Simulator-view/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Simulator-view/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Simulator-view/src/components/Content.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Simulator-view/src/components/Content.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Simulator-view/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Simulator-view/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../databases/sdis.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../databases/sdis.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../databases/sensors.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../databases/sensors.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../databases/ville.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../databases/ville.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/theoahga/emergencyapi/controller/SensorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theoahga/emergencyapi/controller/SensorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/theoahga/emergencyapi/controller/SensorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/theoahga/emergencyapi/controller/SensorController.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,8 +38,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$MAVEN_REPOSITORY$/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar!/jakarta/persistence/Column.class" root0="SKIP_INSPECTION" />
     <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/3.2.0/spring-boot-autoconfigure-3.2.0.jar!/org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar!/jakarta/persistence/Column.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
@@ -42,45 +54,29 @@
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
   <component name="ProjectId" id="2ZiqIR4rhjdQtAzlgWVKHk9QBNj" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/repo/TheNeuilleProject/emergency-api/src/main/java/com/theoahga/emergencyapi",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "bb402b0ea7f0711a6512d46cb51f1809",
-    "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
-    ]
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\repo\TheNeuilleProject\emergency-api\src\main\java\com\theoahga\emergencyapi" />
@@ -90,6 +86,8 @@
     <configuration name="EmergencyApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="emergency-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.theoahga.emergencyapi.EmergencyApiApplication" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -107,22 +105,15 @@
       <workItem from="1702970817516" duration="168000" />
       <workItem from="1702971002957" duration="116000" />
       <workItem from="1702971131977" duration="2707000" />
+      <workItem from="1702982038769" duration="180000" />
+      <workItem from="1702982249480" duration="860000" />
+      <workItem from="1703077297962" duration="869000" />
+      <workItem from="1703163715030" duration="647000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/theoahga/emergencyapi/controller/SensorController.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,4 +1,4 @@
-create table sensors
+create table emergency.sensors
 (
     cid      serial
         primary key,
@@ -7,10 +7,10 @@ create table sensors
     adresse  varchar(500),
     alias    varchar(20),
     id_ville integer
-        references ville
+        references emergency.ville
 );
 
-alter table sensors
+alter table emergency.sensors
     owner to postgres;
 
 INSERT INTO emergency.sensors (cid, lat, lon, adresse, alias, id_ville) VALUES (1, '45.78067985908081', '4.860780835221825', 'Tennis Club de Lyon, Boulevard de la Bataille de Stalingrad, 69100 Villeurbanne, France', '', 2);

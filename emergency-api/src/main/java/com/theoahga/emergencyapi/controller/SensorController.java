@@ -5,10 +5,7 @@ import com.theoahga.emergencyapi.entity.Ville;
 import com.theoahga.emergencyapi.repository.SensorRepository;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +18,7 @@ public class SensorController {
     this.sensorRepository = sensorRepository;
   }
 
+  @CrossOrigin
   @GetMapping(value = "/getAllById", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<List<Sensor>> getAll(@RequestParam Long id) {
     return ResponseEntity.ok(sensorRepository.getAllByIdVille(id));
