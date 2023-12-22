@@ -1,4 +1,8 @@
 simulator/.idea/
 simulator/target/
+
 emergency-api/.idea/
 emergency-api/target/
+
+simulator-api/.idea/
+simulator-api/target/
