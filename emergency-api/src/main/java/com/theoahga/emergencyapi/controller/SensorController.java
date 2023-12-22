@@ -1,7 +1,6 @@
 package com.theoahga.emergencyapi.controller;
 
 import com.theoahga.emergencyapi.entity.Sensor;
-import com.theoahga.emergencyapi.entity.Ville;
 import com.theoahga.emergencyapi.repository.SensorRepository;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
