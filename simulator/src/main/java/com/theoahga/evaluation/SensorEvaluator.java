@@ -69,7 +69,11 @@ public class SensorEvaluator implements Evaluator {
     if (distanceMinFromFire != null) {
       int intensity = IntensityUtils.findIntensity(distanceMinFromFire);
       state.setIntensity(intensity);
-      state.setType(SensorStateUtils.generateRamdonTypeFire());
+      if(sensor.getState().getType() == TypeFire.OFF){
+        state.setType(SensorStateUtils.generateRamdonTypeFire());
+      }else{
+        state.setType(sensor.getState().getType());
+      }
     }else {
       state.setType(TypeFire.OFF);
       state.setIntensity(0);
@@ -92,7 +96,7 @@ public class SensorEvaluator implements Evaluator {
       Measure distanceBetweenFireAndSensor = GeometryUtils.computeDistance(fire, sensor);
       if(distanceBetweenFireAndSensor.getUnit() == SI.METRE
               && distanceBetweenFireAndSensor.doubleValue() <= SENSOR_REACH_MAX
-              && (distanceMin == null | distanceMin.doubleValue() > distanceBetweenFireAndSensor.doubleValue())){
+              && (distanceMin == null | (distanceMin != null && distanceMin.doubleValue()> distanceBetweenFireAndSensor.doubleValue()))){
         distanceMin = distanceBetweenFireAndSensor;
       }
     }
@@ -100,5 +104,7 @@ public class SensorEvaluator implements Evaluator {
     return distanceMin;
   }
 
-
+  public List<Sensor> getSensors(){
+    return sensors;
+  }
 }

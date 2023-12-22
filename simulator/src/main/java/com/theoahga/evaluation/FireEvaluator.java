@@ -46,7 +46,7 @@ public class FireEvaluator implements Evaluator {
   private List<Fire> evaluateAllFires() {
     List<Fire> firesUpdated = new ArrayList<>();
     for (Fire fire : fires){
-      fire.setRadius(new Measure((fire.getRadius().doubleValue()*1.5), SI.METRE));
+      fire.setRadius(new Measure((fire.getRadius().doubleValue()*1.05), SI.METRE));
       firesUpdated.add(fire);
       // TODO : look for inetervention related to this fire
     }
@@ -100,4 +100,8 @@ public class FireEvaluator implements Evaluator {
     Measure radius = new Measure(rand, SI.METRE);
     return radius;
   }
+
+    public List<Fire> getFires() {
+      return fires;
+    }
 }

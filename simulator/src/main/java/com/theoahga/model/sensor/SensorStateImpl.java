@@ -9,7 +9,7 @@ public class SensorStateImpl implements SensorState {
 
   public SensorStateImpl() {
     this.intensity = 0;
-    this.type = null;
+    this.type = TypeFire.OFF;
   }
 
   @Override
