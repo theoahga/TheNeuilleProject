@@ -9,4 +9,6 @@ public interface Fire {
   Measure getRadius();
 
   void setRadius(Measure radius1);
+
+  String getId();
 }

@@ -4,7 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0e3986e-2faa-4236-a43e-5120fb00bf45" name="Changes" comment="" />
+    <list default="true" id="a0e3986e-2faa-4236-a43e-5120fb00bf45" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/MyWebMVCConfigurer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/entity/FireInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/entity/SensorInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/repository/FireInfoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/repository/SensorInfoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/rest/FireController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/rest/SensorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/service/FireService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/service/SensorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/service/WebSocketNotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/utils/PropertyUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/ws/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/ws/WebSocketController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulation-api/src/main/resources/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/exception/PostRequestException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/http/FireManagerHttp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/model/fire/api/FireInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/model/sensor/api/SensorInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/utils/ParsingUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Changes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Changes/EmergencyApiApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Changes/Sdis.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Changes/Sensor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Changes/SensorController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Changes/SensorRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Changes/Ville.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Changes/VilleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Changes/VilleRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Changes/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/theoahga/emergencyapi/controller/SensorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/theoahga/emergencyapi/controller/SensorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulation-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../simulation-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/SimulationApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/SimulationApiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/controller/GreetingController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulation-api/src/main/java/com/theoahga/simulationapi/model/Greeting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulation-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../simulation-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/evaluation/EvaluationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/evaluation/EvaluationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/evaluation/EvaluationTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/evaluation/EvaluationTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/evaluation/FireEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/evaluation/FireEvaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/evaluation/SensorEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/evaluation/SensorEvaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/evaluation/api/Evaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/evaluation/api/Evaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/http/SensorManagerHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/http/SensorManagerHttp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/http/SimulatorHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/http/SimulatorHttp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/model/fire/FireImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/model/fire/FireImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/model/fire/api/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/model/fire/api/Fire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/model/sensor/SensorStateImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/model/sensor/SensorStateImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/utils/SensorStateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/java/com/theoahga/utils/SensorStateUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simulator/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../simulator/src/main/resources/config.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,31 +111,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/repo/TheNeuilleProject/emergency-api/src/main/java/com/theoahga/emergencyapi",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "bb402b0ea7f0711a6512d46cb51f1809",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/repo/TheNeuilleProject/emergency-api/src/main/java/com/theoahga/emergencyapi&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;bb402b0ea7f0711a6512d46cb51f1809&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\repo\TheNeuilleProject\emergency-api\src\main\java\com\theoahga\emergencyapi" />
@@ -107,22 +162,14 @@
       <workItem from="1702970817516" duration="168000" />
       <workItem from="1702971002957" duration="116000" />
       <workItem from="1702971131977" duration="2707000" />
+      <workItem from="1703001457463" duration="5274000" />
+      <workItem from="1703117079912" duration="1273000" />
+      <workItem from="1703183502468" duration="4432000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/theoahga/emergencyapi/controller/SensorController.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

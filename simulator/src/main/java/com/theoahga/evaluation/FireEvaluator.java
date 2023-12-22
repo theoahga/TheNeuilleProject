@@ -100,4 +100,8 @@ public class FireEvaluator implements Evaluator {
     Measure radius = new Measure(rand, SI.METRE);
     return radius;
   }
+
+    public List<Fire> getFires() {
+      return fires;
+    }
 }
