@@ -60,7 +60,7 @@ export default {
     getSensors : async function () {
       this.clearArray();
       if(store.displaySensor === true){
-        await axios.get(`http://localhost:8080/emergency/api/sensor/getAllById?id=${store.selectedSDIS}`)
+        await axios.get(`http://localhost:10000/simulator/api/sensor/getAllById?id=${store.selectedSDIS}`)
             .then(response => {
               let tabSensor = response.data;
               tabSensor.forEach((element) => {
