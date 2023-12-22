@@ -68,6 +68,15 @@ public class SensorController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping(value = "/getDescriptionByIdVille", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getDescriptionByIdVille(@RequestParam int id){
+        String url = System.getProperty("ermengency.api.host") + System.getProperty("ermengency.api.endpoint.getsensorbyidville");
+        url+="?id="+id;
+        String result = restClient.get().uri(url).retrieve().body(String.class);
+
+        return ResponseEntity.ok(result);
+    }
+
     @GetMapping(value = "/getAllStates", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SensorInfo>> getAllStates(){
         return ResponseEntity.ok(sensorService.getAllStates());
