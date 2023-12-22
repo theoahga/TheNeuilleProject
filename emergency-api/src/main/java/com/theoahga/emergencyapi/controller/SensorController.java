@@ -59,8 +59,9 @@ public class SensorController {
     return ResponseEntity.ok(sensorService.getActiveStates());
   }
 
-  @GetMapping(value = "/evolution", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<List<Integer>> getEvolution(@RequestParam long cid) {
-    return ResponseEntity.ok(influxdbSensorService.getEvolutionByCid(cid));
+  @CrossOrigin
+  @GetMapping(value = "/getAllById", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<List<Sensor>> getAll(@RequestParam Long id) {
+    return ResponseEntity.ok(sensorRepository.getAllByIdVille(id));
   }
 }
