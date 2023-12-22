@@ -24,11 +24,13 @@ public class SensorController {
     return ResponseEntity.ok(sensorRepository.getAllByIdVille(id));
   }
 
+  @CrossOrigin
   @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<List<Sensor>> getAll() {
     return ResponseEntity.ok(sensorRepository.getAllBy());
   }
 
+  @CrossOrigin
   @GetMapping(value = "/getById", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Optional<Sensor>> getById(@RequestParam Long id) {
     return ResponseEntity.ok(sensorRepository.findById(id));
