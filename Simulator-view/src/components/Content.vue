@@ -4,6 +4,36 @@ import {LMap, LTileLayer, LMarker, LPopup} from 'vue2-leaflet';
 import axios from "axios";
 import { defineStore, mapStores } from "pinia";
 
+//Import for Socket Part
+import SockJS from "sockjs-client/dist/sockjs";
+import Stomp from "webstomp-client"
+
+let stompClient = null;
+
+function connect() {
+  let socket = new SockJS('http://127.0.0.1:10000/simulator/api/ws');
+  stompClient = Stomp.over(socket);
+  stompClient.connect({}, function (frame) {
+    console.log('Connected: ' + frame);
+    stompClient.subscribe('/topic/sensor', function (greeting) {
+      showGreeting(JSON.parse(greeting.body));
+    });
+  });
+}
+
+function disconnect() {
+  if (stompClient !== null) {
+    stompClient.disconnect();
+  }
+  setConnected(false);
+  console.log("Disconnected");
+}
+
+function showGreeting(message) {
+  console.log(message);
+}
+
+
 const simStore = defineStore('simulationStore', {
   state: () => {
     return {
@@ -16,6 +46,7 @@ const simStore = defineStore('simulationStore', {
 
 let store;
 export default {
+  name: "websocket",
   components: {
     LMap,
     LTileLayer,
@@ -35,6 +66,9 @@ export default {
       items: [
         'Lyon','Villeurbanne',
       ],
+      received_messages: [],
+      send_message: null,
+      connected: false
     };
   },
   computed: {
@@ -99,12 +133,10 @@ export default {
       this.markers = [];
       store.items = [];
     },
-    loadPopup: function (marker) {
-      console.log(document.getElementById("marker"));
-    }
   },
   setup() {
     store = simStore();
+    connect();
     return store;
   },
 }
@@ -144,7 +176,7 @@ export default {
             @update:bounds="boundsUpdated"
         >
           <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-          <l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="marker" v-on:click="loadPopup(marker)" id="marker"></l-marker>
+          <l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="marker" id="marker"></l-marker>
         </l-map>
     </div>
   </div>
