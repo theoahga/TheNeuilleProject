@@ -1,6 +1,6 @@
 <script>
 
-import {LMap, LTileLayer, LMarker, LPopup} from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker, LCircle} from 'vue2-leaflet';
 import axios from "axios";
 import { defineStore, mapStores } from "pinia";
 
@@ -8,30 +8,13 @@ import { defineStore, mapStores } from "pinia";
 import SockJS from "sockjs-client/dist/sockjs";
 import Stomp from "webstomp-client"
 
+
+import { onMounted } from "vue";
+
+
 let stompClient = null;
 
-function connect() {
-  let socket = new SockJS('http://127.0.0.1:10000/simulator/api/ws');
-  stompClient = Stomp.over(socket);
-  stompClient.connect({}, function (frame) {
-    console.log('Connected: ' + frame);
-    stompClient.subscribe('/topic/sensor', function (greeting) {
-      showGreeting(JSON.parse(greeting.body));
-    });
-  });
-}
 
-function disconnect() {
-  if (stompClient !== null) {
-    stompClient.disconnect();
-  }
-  setConnected(false);
-  console.log("Disconnected");
-}
-
-function showGreeting(message) {
-  console.log(message);
-}
 
 
 const simStore = defineStore('simulationStore', {
@@ -45,13 +28,14 @@ const simStore = defineStore('simulationStore', {
 });
 
 let store;
+
 export default {
   name: "websocket",
   components: {
     LMap,
     LTileLayer,
     LMarker,
-    LPopup
+    LCircle
   },
   data () {
     return {
@@ -63,12 +47,12 @@ export default {
       bounds: null,
       markers: [],
       e1: 'Lyon',
-      items: [
-        'Lyon','Villeurbanne',
-      ],
+      items: ['Lyon','Villeurbanne'],
       received_messages: [],
       send_message: null,
-      connected: false
+      connected: false,
+      fireArray: [],
+      fireSensor: [],
     };
   },
   computed: {
@@ -90,6 +74,7 @@ export default {
       store.displaySensor = !checkBox;
       let displaySensorValue = store.displaySensor;
       console.log(`Display Sensor : ${displaySensorValue}`);
+      this.connectFire();
     },
     getSensors : async function () {
       this.clearArray();
@@ -133,10 +118,40 @@ export default {
       this.markers = [];
       store.items = [];
     },
+    updateFire: function (fire){
+      this.fireArray = [];
+      this.fireArray = fire;
+    },
+    updateSensor: function (sensor){
+      this.fireSensor = sensor;
+    },
+    connectFire: function () {
+      let self = this;
+      let socket = new SockJS('http://127.0.0.1:10000/simulator/api/ws');
+      stompClient = Stomp.over(socket);
+      stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/topic/fire', function (greeting) {
+          self.updateFire(JSON.parse(greeting.body))
+          console.log(self.fireArray);
+        });
+      });
+    },
+    connectSensor: function () {
+      let self = this;
+      let socket = new SockJS('http://127.0.0.1:10000/simulator/api/ws');
+      stompClient = Stomp.over(socket);
+      stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/topic/sensor', function (greeting) {
+          self.updateSensor(JSON.parse(greeting.body));
+          console.log(self.fireSensor);
+        });
+      });
+    },
   },
   setup() {
     store = simStore();
-    connect();
     return store;
   },
 }
@@ -177,6 +192,7 @@ export default {
         >
           <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
           <l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="marker" id="marker"></l-marker>
+          <l-circle v-for="(fire,index) in fireArray" :key="index" :lat-lng="[fire.lon,fire.lat]" :radius="fire.radius*10" :color="'red'"/>
         </l-map>
     </div>
   </div>
