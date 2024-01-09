@@ -6,3 +6,7 @@ emergency-api/target/
 
 simulator-api/.idea/
 simulator-api/target/
+
+emergency-manager/.idea/
+emergency-manager/target/
+

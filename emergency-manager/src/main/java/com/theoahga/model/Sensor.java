@@ -1,44 +1,28 @@
-package com.theoahga.emergencyapi.entity;
+package com.theoahga.model;
 
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "sensors", schema = "emergency")
 public class Sensor {
-  @Id
-  @Column(name = "cid")
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long cid;
+  private int cid;
 
-  @Column(name = "lat")
   private double lat;
 
-  @Column(name = "lon")
   private double lon;
 
-  @Column(name = "adresse")
   private String adresse;
 
-  @Column(name = "alias")
   private String alias;
 
+  private int cityId;
 
-  @ManyToOne
-  private City city;
 
-  public Sensor(Long cid, double lat, double lon, String adresse, String alias, City city) {
+  public Sensor(int cid, double lat, double lon, int intensity, String type, int cityId) {
     this.cid = cid;
     this.lat = lat;
     this.lon = lon;
-    this.adresse = adresse;
-    this.alias = alias;
-    this.city = city;
+    this.intensity
   }
 
-  public Sensor() {
-  }
-
-  public Long getCid() {
+  public int getCid() {
     return cid;
   }
 
@@ -58,8 +42,8 @@ public class Sensor {
     return alias;
   }
 
-  public City getCity() {
-    return city;
+  public int getCityId() {
+    return cityId;
   }
 
   @Override
@@ -74,8 +58,6 @@ public class Sensor {
             + this.lon
             + " adresse="
             + this.adresse
-            + " idVille="
-            + this.city.getId()
             + "]";
   }
 }

@@ -48,7 +48,7 @@ public class FireEvaluator implements Evaluator {
     for (Fire fire : fires){
       fire.setRadius(new Measure((fire.getRadius().doubleValue()*1.05), SI.METRE));
       firesUpdated.add(fire);
-      // TODO : look for inetervention related to this fire
+      // TODO : look for intervention related to this fire
     }
 
     return firesUpdated;
