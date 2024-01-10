@@ -119,7 +119,6 @@ export default {
       store.items = [];
     },
     updateFire: function (fire){
-      this.fireArray = [];
       this.fireArray = fire;
     },
     updateSensor: function (sensor){
