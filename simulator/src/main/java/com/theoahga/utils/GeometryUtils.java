@@ -24,6 +24,10 @@ public class GeometryUtils {
             throw new DistanceComputingException("There is something wrong in the distance computing");
         }
 
+        if(distance < 0){
+            distance = 0d;
+        }
+
         return new Measure(distance, SI.METRE);
     }
 }
