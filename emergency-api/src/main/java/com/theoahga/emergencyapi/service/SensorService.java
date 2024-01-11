@@ -24,4 +24,8 @@ public class SensorService {
     public Optional<Sensor> getById(Long id) {
         return sensorRepository.findById(id);
     }
+
+    public List<Sensor> getAllActive(){
+        return sensorRepository.
+    }
 }

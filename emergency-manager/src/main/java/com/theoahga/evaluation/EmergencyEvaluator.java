@@ -31,8 +31,6 @@ public class EmergencyEvaluator {
 
 
     public void evaluate(){
-
-
         List<Intervention> startedInterventions = EmergencyHttp.getStartedInterventions();
 
         List<Integer> treatSensorIds = new ArrayList<>();
