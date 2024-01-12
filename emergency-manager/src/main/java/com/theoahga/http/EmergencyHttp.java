@@ -51,7 +51,9 @@ public final class EmergencyHttp {
 
     HttpClient client = HttpClient.newHttpClient();
 
-    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper objectMapper = new ObjectMapper()
+            .addMixIn(Unit.class,)
+            .addMixIn();
     String requestBodyStr = objectMapper.writeValueAsString(requestBody);
 
     HttpRequest request = HttpRequest.newBuilder()

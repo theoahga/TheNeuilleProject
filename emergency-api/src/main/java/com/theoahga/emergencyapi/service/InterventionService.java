@@ -15,4 +15,8 @@ public class InterventionService {
     public List<Intervention> getAllStarted() {
         return repository.findAllByEndDateIsNull();
     }
+
+    public Intervention create(Intervention intervention) {
+        return repository.save(intervention);
+    }
 }

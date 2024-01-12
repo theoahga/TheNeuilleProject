@@ -64,4 +64,8 @@ public class Sensor {
             + this.adresse
             + "]";
   }
+
+  public void setCityId(int cityId) {
+    this.cityId = cityId;
+  }
 }

@@ -22,8 +22,12 @@ public class ParsingUtils {
             double lon = node.get("lon").asDouble();
             int intensity = node.get("intensity").asInt();
             String type = node.get("type").asText();
+            int cityId = node.get("cityId").asInt();
 
-           sensorList.add(new Sensor(cid,lat,lon,intensity,type));
+            Sensor sensor = new Sensor(cid,lat,lon,intensity,type);
+            sensor.setCityId(cityId);
+
+            sensorList.add(sensor);
         }
         return sensorList;
     }

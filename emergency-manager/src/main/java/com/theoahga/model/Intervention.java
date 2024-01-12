@@ -35,6 +35,26 @@ public class Intervention {
         return cid;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public List<Unit> getUnits() {
+        return units;
+    }
+
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
     public void close(){
         this.status = Status.FINISHED;
         this.endDate = new Date();
