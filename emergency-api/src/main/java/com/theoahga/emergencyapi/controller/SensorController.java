@@ -34,6 +34,7 @@ public class SensorController {
     this.influxdbSensorService = influxdbSensorService;
   }
 
+  @CrossOrigin
   @GetMapping(value = "/getAllByIdVille", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<List<Sensor>> getAllByIdVille(@RequestParam Long id) {
     return ResponseEntity.ok(sensorService.getAllByIdVille(id));
