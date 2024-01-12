@@ -8,13 +8,11 @@ import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
 import com.theoahga.emergencyapi.repository.FireTypeRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -56,7 +54,7 @@ public class InfluxdbSensorService {
         int type_id = sensorValue.get("t").asInt();
 
         Point point = Point.measurement("sensor")
-                .addField("cid", cid)
+                .addTag("cid", String.valueOf(cid))
                 .addField("intensity", intensity)
                 .addTag("type", fireTypeRepository.findByNumber(type_id).getName())
                 .time(Instant.now(), WritePrecision.MS);
@@ -68,6 +66,15 @@ public class InfluxdbSensorService {
     }
 
     public List<Map<String, Object>> readAllActiveStates() {
+        /*
+        from(bucket:"influx")
+|> range(start:0)
+|> filter(fn: (r) => r["_measurement"] == "sensor")
+|> keep(columns: ["_value","cid", "_time","type"])
+|> last(column: "cid")
+         */
+
+
         String flux = "from(bucket:\"influx\")"
                 + "|> range(start:0)"
                 + "|> filter(fn: (r) => r[\"_measurement\"] == \"sensor\")"
@@ -100,6 +107,29 @@ public class InfluxdbSensorService {
 
         if (idsToRemove.size() > 0) {
             result.stream().filter(i -> !idsToRemove.contains((Integer) i.get("cid"))).collect(Collectors.toList());
+        }
+
+        return result;
+    }
+
+    public List<Integer> getEvolutionByCid(long cid) {
+        String flux = "from(bucket:\"influx\")"
+                + "|> range(start:0)"
+                + "|> filter(fn: (r) => r[\"_measurement\"] == \"sensor\")"
+                + "|> keep(columns: [\"_value\",\"cid\", \"_time\",\"type\"])"
+                + "|> filter(fn: (r) => r[\"cid\"] == \"" + cid + "\")"
+                + "|> sort(columns: [\"_time\"])";
+
+        List<Integer> result = new ArrayList<>();
+
+        QueryApi queryApi = influxDBClient.getQueryApi();
+        List<FluxTable> tables = queryApi.query(flux);
+        for (FluxTable fluxTable : tables) {
+            List<FluxRecord> records = fluxTable.getRecords();
+            for (FluxRecord fluxRecord : records) {
+                fluxRecord.getValueByKey("type");
+                result.add(Integer.parseInt(fluxRecord.getValueByKey("_value").toString()));
+            }
         }
 
         return result;

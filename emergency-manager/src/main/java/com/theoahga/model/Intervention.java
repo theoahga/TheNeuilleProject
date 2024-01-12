@@ -1,7 +1,10 @@
 package com.theoahga.model;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theoahga.http.EmergencyHttp;
+import com.theoahga.mixin.UnitMixIn;
+import com.theoahga.mixin.VehicleMixIn;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +19,16 @@ public class Intervention {
     private List<Unit> units;
     private List<Vehicle> vehicles;
     private int cid;
+
+    public Intervention(int id, Date startDate, Date endDate, Status status, List<Unit> units, List<Vehicle> vehicles, int cid) {
+        this.id = id;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+        this.units = units;
+        this.vehicles = vehicles;
+        this.cid = cid;
+    }
 
     public Intervention(int cid) {
         this.id = -1;
@@ -69,7 +82,12 @@ public class Intervention {
         }
 
         try {
-            EmergencyHttp.sendPostRequest(url, this);
+            ObjectMapper objectMapper = new ObjectMapper()
+                    .addMixIn(Vehicle.class, VehicleMixIn.class)
+                    .addMixIn(Unit.class, UnitMixIn.class);
+
+            String requestBody = objectMapper.writeValueAsString(this);
+            EmergencyHttp.sendPostRequest(url, requestBody);
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }

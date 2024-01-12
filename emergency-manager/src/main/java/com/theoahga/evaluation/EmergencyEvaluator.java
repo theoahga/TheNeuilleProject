@@ -40,14 +40,16 @@ public class EmergencyEvaluator {
                 inter.close();
                 inter.publish();
 
-                treatSensorIds.add(inter.getCid());
+                System.out.println("Intervention ended for cid : " + inter.getCid());
             }else if(sensorEvolution.increase() || sensorEvolution.isStable()){
                 // Add
                 inter.publish();
-                treatSensorIds.add(inter.getCid());
+
+                System.out.println("Intervention updated for cid : " + inter.getCid());
             }else if(sensorEvolution.decrease()){
                 // Nothing To Do
             }
+            treatSensorIds.add(inter.getCid());
         }
 
 
@@ -57,6 +59,7 @@ public class EmergencyEvaluator {
                 Intervention intervention = new Intervention(sensor.getCid());
                 affectVehiculeAndUnit(intervention,sensor);
                 intervention.publish();
+                System.out.println("Intervention created for cid : " + sensor.getCid());
             }
         }
     }

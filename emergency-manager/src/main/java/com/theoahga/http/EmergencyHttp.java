@@ -3,6 +3,8 @@ package com.theoahga.http;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.theoahga.mixin.UnitMixIn;
+import com.theoahga.mixin.VehicleMixIn;
 import com.theoahga.model.*;
 import com.theoahga.utils.ParsingUtils;
 
@@ -51,9 +53,7 @@ public final class EmergencyHttp {
 
     HttpClient client = HttpClient.newHttpClient();
 
-    ObjectMapper objectMapper = new ObjectMapper()
-            .addMixIn(Unit.class,)
-            .addMixIn();
+    ObjectMapper objectMapper = new ObjectMapper();
     String requestBodyStr = objectMapper.writeValueAsString(requestBody);
 
     HttpRequest request = HttpRequest.newBuilder()
@@ -66,6 +66,26 @@ public final class EmergencyHttp {
 
 
     JsonNode jsonNode = objectMapper.readTree(response.body());
+
+    return jsonNode;
+  }
+
+  public static JsonNode sendPostRequest(String urlToPost, String requestBody) throws IOException, InterruptedException {
+    if (!urlToPost.startsWith("http")) {
+      urlToPost = "http://" + urlToPost;
+    }
+
+    HttpClient client = HttpClient.newHttpClient();
+    HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(urlToPost))
+            .header("Content-Type", "application/json")  // Set the content type if your server expects JSON
+            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+            .build();
+
+    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+
+    JsonNode jsonNode = new ObjectMapper().readTree(response.body());
 
     return jsonNode;
   }
@@ -182,7 +202,7 @@ public final class EmergencyHttp {
   }
 
   public static SensorEvolution getSensorEvolutionBySensorId(int cid) {
-    String url = System.getProperty("emergency.api.host") + System.getProperty("emergency.api.endpoint.getSensorEvolutionById")+"?id="+cid;
+    String url = System.getProperty("emergency.api.host") + System.getProperty("emergency.api.endpoint.getSensorEvolutionById")+"?cid="+cid;
 
     JsonNode result;
     try {

@@ -38,6 +38,10 @@ public class Vehicle {
     public Vehicle() {
     }
 
+    public Vehicle(String immat) {
+        this.immat = immat;
+    }
+
     public String getImmat() {
         return immat;
     }
@@ -68,5 +72,33 @@ public class Vehicle {
 
     public boolean isAvailable() {
         return isAvailable;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPlacesNumber(int placesNumber) {
+        this.placesNumber = placesNumber;
+    }
+
+    public void setAssociatedFireTypes(List<FireType> associatedFireTypes) {
+        this.associatedFireTypes = associatedFireTypes;
+    }
+
+    public void setType(VehicleType type) {
+        this.type = type;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+    public void setStation(Station station) {
+        this.station = station;
     }
 }

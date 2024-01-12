@@ -3,10 +3,9 @@ package com.theoahga.emergencyapi.controller;
 import com.theoahga.emergencyapi.entity.Station;
 import com.theoahga.emergencyapi.entity.Unit;
 import com.theoahga.emergencyapi.service.UnitService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +22,10 @@ public class UnitController {
     public ResponseEntity<List<Unit>> getAll() {
         List<Unit> units = unitService.getAll();
         return ResponseEntity.ok(units);
+    }
+
+    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Unit> update(@RequestBody Unit unit) {
+        return ResponseEntity.ok(unitService.update(unit));
     }
 }

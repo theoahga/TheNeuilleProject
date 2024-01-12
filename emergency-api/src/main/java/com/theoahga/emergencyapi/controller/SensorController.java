@@ -2,7 +2,9 @@ package com.theoahga.emergencyapi.controller;
 
 import com.theoahga.emergencyapi.entity.*;
 import com.theoahga.emergencyapi.repository.*;
+import com.theoahga.emergencyapi.service.InfluxdbSensorService;
 import com.theoahga.emergencyapi.service.SensorService;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,16 +20,18 @@ public class SensorController {
   private final FireTypeRepository fireTypeRepository;
   private final UnitRepository unitRepository;
   private final StationRepository stationRepository;
+  private final InfluxdbSensorService influxdbSensorService;
 
   public SensorController(SensorService sensorService, FireManRepository fireManRepository,
                           FireTypeRepository fireTypeRepository, UnitRepository unitRepository,
-                          StationRepository stationRepository) {
+                          StationRepository stationRepository, InfluxdbSensorService influxdbSensorService) {
 
     this.sensorService = sensorService;
     this.fireManRepository = fireManRepository;
     this.fireTypeRepository = fireTypeRepository;
     this.unitRepository = unitRepository;
     this.stationRepository = stationRepository;
+    this.influxdbSensorService = influxdbSensorService;
   }
 
   @GetMapping(value = "/getAllByIdVille", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -53,5 +57,10 @@ public class SensorController {
   @GetMapping(value = "/getAllActive", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<List<Map<String, Object>>> getAllActive() {
     return ResponseEntity.ok(sensorService.getActiveStates());
+  }
+
+  @GetMapping(value = "/evolution", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<List<Integer>> getEvolution(@RequestParam long cid) {
+    return ResponseEntity.ok(influxdbSensorService.getEvolutionByCid(cid));
   }
 }

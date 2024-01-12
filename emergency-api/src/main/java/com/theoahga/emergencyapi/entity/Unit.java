@@ -15,18 +15,22 @@ public class Unit {
     @ManyToMany
     private List<FireType> specialities;
     @Column(name = "isAvailable")
-    private Boolean isAvailable;
+    private Boolean available;
 
     @ManyToOne
     private Station station;
 
-    public Unit(List<FireType> specialities, Boolean isAvailable) {
+    public Unit(List<FireType> specialities, Boolean available) {
         this.specialities = specialities;
-        this.isAvailable = isAvailable;
+        this.available = available;
     }
 
     public Unit() {
 
+    }
+
+    public Unit(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
@@ -39,10 +43,26 @@ public class Unit {
     }
 
     public Boolean getAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public Station getStation() {
         return station;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setSpecialities(List<FireType> specialities) {
+        this.specialities = specialities;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
+
+    public void setStation(Station station) {
+        this.station = station;
     }
 }
