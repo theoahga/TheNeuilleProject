@@ -4,6 +4,7 @@ import com.theoahga.emergencyapi.entity.Sdis;
 import com.theoahga.emergencyapi.entity.Station;
 import com.theoahga.emergencyapi.service.StationService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ public class StationController {
         this.stationService = stationService;
     }
 
-
+    @CrossOrigin
     @GetMapping(value = "/getAll")
     public ResponseEntity<List<Station>> getAll() {
         List<Station> stationList = stationService.getAll();
