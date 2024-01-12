@@ -3,6 +3,7 @@ export default {
   data: () => ({
     locations: ['Lyon','Villeurbanne'],
     location: 'Lyon',
+    actualPosition: 'Lyon',
   }),
   methods: {
     changeCaserneState: function (e){
@@ -11,7 +12,11 @@ export default {
     changeTruckState: function (e){
       this.$emit("change-state-truck",e.target.checked);
     },
+    changeSensorState: function (e){
+      this.$emit("change-sensor-truck",{1:e.target.checked,2:this.actualPosition});
+    },
     updateMapPositions: function (e){
+      this.actualPosition = e;
       this.$emit("change-map-position",e)
     }
   }
@@ -23,8 +28,9 @@ export default {
   <div class="menu">
     <div class="wrapperLocation"><v-select v-model="location" :items="locations" label="Choose location !" v-on:update:model-value="updateMapPositions($event)"></v-select></div>
     <div class="wrapperCaserne"><v-checkbox dark label="Display caserne" class="dispCaserne" v-on:click="changeCaserneState($event)"></v-checkbox></div>
+    <div class="wrapperSensor"><v-checkbox dark label="Display Sensor" class="dispSensor" v-on:click="changeSensorState($event)"></v-checkbox></div>
     <div class="wrapperTruck"><v-checkbox dark label="Display truck" class="dispTruck" v-on:click="changeTruckState($event)"></v-checkbox></div>
-    <div class="wrapperButton"><v-btn depressed color="error" class="btnConnect">Connect</v-btn></div>
+    <div class="wrapperButton"><v-btn depressed color="error" class="btnConnectFire">Connect Fire</v-btn><v-btn depressed color="#1E88E5" class="btnConnectTruck">Connect Truck</v-btn></div>
   </div>
 </template>
 
@@ -64,12 +70,25 @@ export default {
     }
   }
 
+  .wrapperSensor {
+    width: 90%;
+    height: fit-content;
+    margin-left: 5%;
+    color: var(--vt-c-text-dark-1);
+    .dispSensor {
+      display: flex;
+      font-size: 1rem;
+    }
+  }
+
   .wrapperButton {
-    width: 100%;
+    width: 80%;
     height: fit-content;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
     .btn-apply {
       width: 6vw;
       font-size: 1rem;

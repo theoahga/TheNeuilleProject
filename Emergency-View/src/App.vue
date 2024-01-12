@@ -6,6 +6,8 @@
 <template>
   <Header msg="Emergency"></Header>
   <Content></Content>
+
+  <RouterView/>
 </template>
 
 <style scoped>

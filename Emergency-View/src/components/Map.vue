@@ -1,19 +1,23 @@
+<!--suppress ALL -->
 <script>
 import L from "leaflet";
 import {onMounted} from "vue";
-
-onMounted(() => {
-
-});
+import {ca} from "vuetify/locale";
+import caserneIcons from "./../assets/caserne.png";
+import sensorIcons from "./../assets/sensor.png";
 
 export default {
   data() {
     return {
       map:null,
+      markerStationArray:[],
+      markerSensorArray:[],
     }
   },
   props: {
     center: {default:[45.766914, 4.830913]},
+    station: {default:[]},
+    sensor: {default:[]},
   },
   mounted() {
     this.map = L.map('map').setView(this.center, 15);
@@ -25,6 +29,50 @@ export default {
   watch:{
     center(){
       this.map.setView(new L.LatLng(this.center[0],this.center[1]),15);
+    },
+    station(){
+      if(this.station.length != 0){
+
+        let caserneIcon = L.icon({
+          iconUrl: caserneIcons,
+          iconSize: [30,30],
+        });
+
+        console.log("Ajout des markers de station !");
+        this.station.forEach((element) => {
+          console.log(element);
+          let m = new L.marker([element.lat,element.lon],{icon:caserneIcon}).bindPopup(element.address).addTo(this.map);
+          this.markerStationArray.push(m);
+        })
+      }else if (this.station.length === 0){
+        console.log("Suppression des markers de station !");
+        for(let i=0;i<this.markerStationArray.length;i++){
+          this.map.removeLayer(this.markerStationArray[i]);
+        }
+        this.markerStationArray = [];
+      }
+    },
+    sensor(){
+      if(this.sensor.length != 0){
+
+        let sensorIcon = L.icon({
+          iconUrl: sensorIcons,
+          iconSize: [30,30],
+        })
+
+        console.log("Ajout des markers sensor !");
+        this.sensor.forEach((element) => {
+          console.log(element);
+          let m = new L.marker([element.lat,element.lon],{icon:sensorIcon}).bindPopup(element.adresse).addTo(this.map);
+          this.markerSensorArray.push(m);
+        })
+      }else if(this.sensor.length === 0){
+        console.log("Suppression des markers de sensor !");
+        for(let i=0;i<this.markerSensorArray.length;i++){
+          this.map.removeLayer(this.markerSensorArray[i]);
+        }
+        this.markerSensorArray = [];
+      }
     }
   }
 }
