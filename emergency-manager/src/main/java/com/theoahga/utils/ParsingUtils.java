@@ -3,6 +3,7 @@ package com.theoahga.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.theoahga.model.*;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,13 +51,14 @@ public class ParsingUtils {
             JsonNode jsonNode = it.next();
 
             int id = jsonNode.get("id").asInt();
-            LocalDate startDate = LocalDate.parse(jsonNode.get("startDate").asText());
-            LocalDate endDate = LocalDate.parse(jsonNode.get("endDate").asText());
-            Status status = Status.valueOf(jsonNode.get("id").asText());
-            List<Unit> units = createUnitsFromJsonNode(jsonNode.get("units"));
+            Date startDate = Date.from(Instant.parse(jsonNode.get("startDate").asText()));
+            Date endDate = jsonNode.get("endDate").asText().equals("null") ? null : Date.from(Instant.parse(jsonNode.get("endDate").asText()));
+            Status status = Status.valueOf(jsonNode.get("status").asText());
+            List<Unit> units = createUnitsFromJsonNode(jsonNode.get("fireMenUnit"));
             List<Vehicle> vehicles = createVehiclesFromJsonNode(jsonNode.get("vehicles"));
             int cid = jsonNode.get("cid").asInt();
 
+            interventions.add(new Intervention(id,startDate,endDate,status,units,vehicles,cid));
         }
 
         return interventions;
@@ -87,7 +89,7 @@ public class ParsingUtils {
             String description = jsonNode.get("description").asText();
             int placesNumber = jsonNode.get("placesNumber").asInt();
             String type = jsonNode.get("type").asText();
-            Boolean isAvailable = jsonNode.get("isAvailable").asBoolean();
+            Boolean isAvailable = jsonNode.get("available").asBoolean();
 
             vehicles.add(new Vehicle(immat,name,description,placesNumber,type, isAvailable));
         }

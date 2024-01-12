@@ -12,6 +12,8 @@ public class Intervention {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
+    @Column(name = "cid")
+    private Integer cid;
     @Column(name = "startDate")
     private Date startDate;
     @Column(name = "endDate")
@@ -20,11 +22,23 @@ public class Intervention {
     private Status status;
     @ManyToMany
     private List<Unit> units;
+
     @ManyToMany
     private List<Vehicle> vehicles;
 
-    public Intervention(Long id, Date startDate, Date endDate, Status status, List<Unit> units, List<Vehicle> vehicles) {
+    public Intervention(Long id, int cid, Date startDate, Date endDate, Status status, List<Unit> units, List<Vehicle> vehicles) {
         this.id = id;
+        this.cid = cid;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+        this.units = units;
+        this.vehicles = vehicles;
+    }
+
+    public Intervention(int cid, Date startDate, Date endDate, Status status, List<Unit> units, List<Vehicle> vehicles) {
+        this.id = id;
+        this.cid = cid;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
@@ -58,5 +72,41 @@ public class Intervention {
 
     public List<Vehicle> getVehicles() {
         return vehicles;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public List<Unit> getUnits() {
+        return units;
+    }
+
+    public void setUnits(List<Unit> units) {
+        this.units = units;
+    }
+
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 }

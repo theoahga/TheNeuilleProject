@@ -19,4 +19,12 @@ public class InterventionService {
     public Intervention create(Intervention intervention) {
         return repository.save(intervention);
     }
+
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    public void reset() {
+        deleteAll();
+    }
 }

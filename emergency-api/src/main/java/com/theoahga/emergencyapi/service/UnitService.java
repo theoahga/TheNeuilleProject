@@ -20,4 +20,22 @@ public class UnitService {
     }
 
 
+    public Unit update(Unit unit) {
+        Optional<Unit> optionalUnit = unitRepository.findById(unit.getId());
+        if (optionalUnit.isPresent()) {
+            Unit storedUnit = optionalUnit.get();
+
+            storedUnit.setAvailable(unit.getAvailable());
+            storedUnit.setSpecialities(unit.getSpecialities());
+
+            return unitRepository.save(storedUnit);
+        }
+        return null;
+    }
+
+    public void reset() {
+        List<Unit> units = getAll();
+        units.stream().forEach(i -> i.setAvailable(Boolean.TRUE));
+        unitRepository.saveAll(units);
+    }
 }
