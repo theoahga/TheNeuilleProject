@@ -5,10 +5,7 @@ import com.theoahga.emergencyapi.repository.*;
 import com.theoahga.emergencyapi.service.SensorService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -48,15 +45,13 @@ public class SensorController {
     return ResponseEntity.ok(sensorService.getById(id));
   }
 
-  @GetMapping(value = "/test")
-  public ResponseEntity<String> ok() {
-    stationRepository.saveAll(List.of(
-            new Station(45.75223304888803, 4.826356465032533, "9 Rue de Condé, 69002 Lyon, France", "Caserne Perrache"),
-            new Station(45.76066862832485, 4.835709583359651, "Le bassin central de la place, Place de la République, 69002 Lyon, France", "Caserne République"),
-            new Station(45.78353444202694, 4.868465497060774, "12 Rue Enrico Fermi, 69100 Villeurbanne, France", "Caserne Cpe"),
-            new Station(45.78351016802518, 4.877747779545341, "3 Avenue Jean Capelle, 69100 Villeurbanne, France", "Caserne Insa")
-    ));
-    return ResponseEntity.ok("ok");
+  @PostMapping(value = "/registerStates", consumes = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<String> registerStates(@RequestBody String sensorsStates) {
+    return ResponseEntity.ok(sensorService.registerState(sensorsStates));
   }
 
+  @GetMapping(value = "/getAllActive", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<List<Map<String, Object>>> getAllActive() {
+    return ResponseEntity.ok(sensorService.getActiveStates());
+  }
 }

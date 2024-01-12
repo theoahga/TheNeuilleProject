@@ -18,17 +18,17 @@ public class Intervention {
     private Date endDate;
     @Column(name = "status")
     private Status status;
-    @ManyToOne
-    private Unit fireMenUnit;
+    @ManyToMany
+    private List<Unit> units;
     @ManyToMany
     private List<Vehicle> vehicles;
 
-    public Intervention(Long id, Date startDate, Date endDate, Status status, Unit fireMenUnit, List<Vehicle> vehicles) {
+    public Intervention(Long id, Date startDate, Date endDate, Status status, List<Unit> units, List<Vehicle> vehicles) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
-        this.fireMenUnit = fireMenUnit;
+        this.units = units;
         this.vehicles = vehicles;
     }
 
@@ -52,8 +52,8 @@ public class Intervention {
         return status;
     }
 
-    public Unit getFireMenUnit() {
-        return fireMenUnit;
+    public List<Unit> getFireMenUnit() {
+        return units;
     }
 
     public List<Vehicle> getVehicles() {

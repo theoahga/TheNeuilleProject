@@ -31,8 +31,6 @@ public class EmergencyEvaluator {
 
 
     public void evaluate(){
-
-
         List<Intervention> startedInterventions = EmergencyHttp.getStartedInterventions();
 
         List<Integer> treatSensorIds = new ArrayList<>();
@@ -46,7 +44,6 @@ public class EmergencyEvaluator {
             }else if(sensorEvolution.increase() || sensorEvolution.isStable()){
                 // Add
                 inter.publish();
-
                 treatSensorIds.add(inter.getCid());
             }else if(sensorEvolution.decrease()){
                 // Nothing To Do

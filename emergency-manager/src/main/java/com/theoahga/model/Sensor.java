@@ -14,12 +14,16 @@ public class Sensor {
 
   private int cityId;
 
+  private int intensity;
 
-  public Sensor(int cid, double lat, double lon, int intensity, String type, int cityId) {
+  private String type; // TODO :: implement the unit/vehicle choice with fire type
+
+  public Sensor(int cid, double lat, double lon, int intensity, String type) {
     this.cid = cid;
     this.lat = lat;
     this.lon = lon;
-    this.intensity
+    this.intensity = intensity;
+    this.type = type;
   }
 
   public int getCid() {
@@ -59,5 +63,9 @@ public class Sensor {
             + " adresse="
             + this.adresse
             + "]";
+  }
+
+  public void setCityId(int cityId) {
+    this.cityId = cityId;
   }
 }

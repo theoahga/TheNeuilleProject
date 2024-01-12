@@ -46,6 +46,10 @@ public class Unit {
         this.isAvailable = b;
     }
 
+    public Boolean getAvailable() {
+        return isAvailable;
+    }
+
     public void publish() {
         String url = System.getProperty("emergency.api.host") + System.getProperty("emergency.api.endpoint.unit.update");
 

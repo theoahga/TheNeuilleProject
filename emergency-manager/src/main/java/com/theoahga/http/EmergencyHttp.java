@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theoahga.model.*;
+import com.theoahga.utils.ParsingUtils;
 
 import java.io.IOException;
 import java.net.URI;
@@ -50,7 +51,9 @@ public final class EmergencyHttp {
 
     HttpClient client = HttpClient.newHttpClient();
 
-    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper objectMapper = new ObjectMapper()
+            .addMixIn(Unit.class,)
+            .addMixIn();
     String requestBodyStr = objectMapper.writeValueAsString(requestBody);
 
     HttpRequest request = HttpRequest.newBuilder()
@@ -147,7 +150,7 @@ public final class EmergencyHttp {
       String description = jsonNode.get("description").asText();
       int placesNumber = jsonNode.get("placesNumber").asInt();
       String type = jsonNode.get("type").asText();
-      Boolean isAvailable = jsonNode.get("isAvailable").asBoolean();
+      Boolean isAvailable = jsonNode.get("available").asBoolean();
 
       Vehicle vehicle = new Vehicle(immat,name,description,placesNumber,type, isAvailable);
 
@@ -166,7 +169,7 @@ public final class EmergencyHttp {
   }
 
   public static List<Sensor> getActiveSensors() {
-    String url = System.getProperty("emergency.api.host") + System.getProperty("emergency.api.endpoint.getSensor");
+    String url = System.getProperty("emergency.api.host") + System.getProperty("emergency.api.endpoint.getSensorsActive");
 
     JsonNode result;
     try {
@@ -175,14 +178,32 @@ public final class EmergencyHttp {
       throw new RuntimeException(e);
     }
 
-
+    return ParsingUtils.createSensorFromJsonNode(result);
   }
 
   public static SensorEvolution getSensorEvolutionBySensorId(int cid) {
-    // TODO
+    String url = System.getProperty("emergency.api.host") + System.getProperty("emergency.api.endpoint.getSensorEvolutionById")+"?id="+cid;
+
+    JsonNode result;
+    try {
+      result = (JsonNode) sendGetRequest(url);
+    } catch (IOException | InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+
+    return ParsingUtils.createSensorEvolutionFromJsonNode(result);
   }
 
   public static List<Intervention> getStartedInterventions() {
-    // TODO
+    String url = System.getProperty("emergency.api.host") + System.getProperty("emergency.api.endpoint.getStartedInterventions");
+
+    JsonNode result;
+    try {
+      result = (JsonNode) sendGetRequest(url);
+    } catch (IOException | InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+
+    return ParsingUtils.createInterventionsFromJsonNode(result);
   }
 }
