@@ -6,7 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface SensorRepository extends CrudRepository<Sensor, Long> {
-  List<Sensor> getAllByIdVille(Long idVille);
+  List<Sensor> getAllByCity_Id(Long idVille);
 
   List<Sensor> getAllBy();
+
+  Sensor getByCid(Long cid);
 }

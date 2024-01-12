@@ -22,19 +22,21 @@ public class Sensor {
   @Column(name = "alias")
   private String alias;
 
-  @Column(name = "id_ville")
-  private Long idVille;
 
-  public Sensor(Long cid, double lat, double lon, String adresse, String alias, Long idVille) {
+  @ManyToOne
+  private City city;
+
+  public Sensor(Long cid, double lat, double lon, String adresse, String alias, City city) {
     this.cid = cid;
     this.lat = lat;
     this.lon = lon;
     this.adresse = adresse;
     this.alias = alias;
-    this.idVille = idVille;
+    this.city = city;
   }
 
-  public Sensor() {}
+  public Sensor() {
+  }
 
   public Long getCid() {
     return cid;
@@ -56,24 +58,24 @@ public class Sensor {
     return alias;
   }
 
-  public Long getIdVille() {
-    return idVille;
+  public City getCity() {
+    return city;
   }
 
   @Override
   public String toString() {
     return "Sensor[cid="
-        + this.cid
-        + " alias="
-        + this.alias
-        + " lat="
-        + this.lat
-        + " lon="
-        + this.lon
-        + " adresse="
-        + this.adresse
-        + " idVille="
-        + this.idVille
-        + "]";
+            + this.cid
+            + " alias="
+            + this.alias
+            + " lat="
+            + this.lat
+            + " lon="
+            + this.lon
+            + " adresse="
+            + this.adresse
+            + " idVille="
+            + this.city.getId()
+            + "]";
   }
 }

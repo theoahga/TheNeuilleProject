@@ -1,7 +1,8 @@
 package com.theoahga.emergencyapi.controller;
 
-import com.theoahga.emergencyapi.entity.Ville;
-import com.theoahga.emergencyapi.repository.VilleRepository;
+import com.theoahga.emergencyapi.entity.City;
+import com.theoahga.emergencyapi.repository.CityRepository;
+import com.theoahga.emergencyapi.service.CityService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,17 +13,17 @@ import java.util.List;
 
 @RestController()
 @RequestMapping(path = "/ville")
-public class VilleController {
+public class CityController {
 
-    private final VilleRepository villeRepository;
+    private final CityService cityService;
 
-    public VilleController(VilleRepository villeRepository) {
-        this.villeRepository = villeRepository;
+    public CityController(CityService cityService) {
+        this.cityService = cityService;
     }
 
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Ville>> getAll() {
-        List<Ville> villes = villeRepository.findBy();
-        return ResponseEntity.ok(villes);
+    public ResponseEntity<List<City>> getAll() {
+        List<City> cities = cityService.getAll();
+        return ResponseEntity.ok(cities);
     }
 }

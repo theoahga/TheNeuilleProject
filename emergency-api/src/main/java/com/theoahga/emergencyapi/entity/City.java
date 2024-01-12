@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ville", schema = "emergency")
-public class Ville {
+public class City {
   @Id
   @Column(name = "id_ville")
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,11 +13,12 @@ public class Ville {
   @Column(name = "nom")
   private String nom;
 
-  public Ville(String nom) {
+  public City(String nom) {
     this.nom = nom;
   }
 
-  public Ville() {}
+  public City() {
+  }
 
   public Long getId() {
     return id;

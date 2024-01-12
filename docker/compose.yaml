@@ -1,0 +1,18 @@
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    environment:
+      - DOCKER_INFLUXDB_INIT_USERNAME:influx
+      - DOCKER_INFLUXDB_INIT_PASSWORD:influxdb
+      - DOCKER_INFLUXDB_INIT_ORG:influx
+      - DOCKER_INFLUXDB_INIT_BUCKET:influx
+    networks:
+      - default
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./data:/data

@@ -2,25 +2,28 @@ package com.theoahga.emergencyapi.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
+@Table(name = "sdis", schema = "emergency")
 public class Sdis {
   @Id
   @Column(name = "id_sdis")
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @Column(name = "nom")
   private String nom;
 
-  @Column(name = "id_ville")
-  private Long idVille;
+  @ManyToOne(fetch = FetchType.EAGER)
+  private City city;
 
-  public Sdis(String nom, Long idVille) {
+
+  public Sdis(String nom, City city) {
     this.nom = nom;
-    this.idVille = idVille;
+    this.city = city;
   }
 
-  public Sdis() {}
+  public Sdis() {
+  }
 
   public Long getId() {
     return id;
@@ -28,6 +31,14 @@ public class Sdis {
 
   @Override
   public String toString() {
-    return "Sdis[id=" + this.id + " nom=" + this.nom + "  idVille=" + this.idVille + "]";
+    return "SdisRepository[id=" + this.id + " nom=" + this.nom + "  idVille=" + this.city.getId() + "]";
+  }
+
+  public String getNom() {
+    return nom;
+  }
+
+  public City getCity() {
+    return city;
   }
 }
