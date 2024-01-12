@@ -64,6 +64,6 @@ public class SensorController {
   @CrossOrigin
   @GetMapping(value = "/getAllById", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<List<Sensor>> getAll(@RequestParam Long id) {
-    return ResponseEntity.ok(sensorRepository.getAllByIdVille(id));
+    return ResponseEntity.ok(sensorService.getAllByIdVille(id));
   }
 }
