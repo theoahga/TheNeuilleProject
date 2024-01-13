@@ -3,6 +3,7 @@ package com.theoahga.simulationapi.rest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theoahga.simulationapi.entity.SensorInfo;
+import com.theoahga.simulationapi.service.MqttNotificationService;
 import com.theoahga.simulationapi.service.SensorService;
 import com.theoahga.simulationapi.service.WebSocketNotificationService;
 import org.springframework.http.MediaType;
@@ -10,9 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClient;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "sensor")
@@ -20,12 +19,14 @@ public class SensorController {
     private final SensorService sensorService;
     private final RestClient restClient;
     private final WebSocketNotificationService webSocketNotificationService;
+    private final MqttNotificationService mqttNotificationService;
 
     private final ObjectMapper objectMapper;
 
-    public SensorController(SensorService sensorService,WebSocketNotificationService webSocketNotificationService ){
+    public SensorController(SensorService sensorService,WebSocketNotificationService webSocketNotificationService, MqttNotificationService mqttNotificationService){
         this.sensorService = sensorService;
         this.webSocketNotificationService = webSocketNotificationService;
+        this.mqttNotificationService = mqttNotificationService;
 
         this.restClient = RestClient.create();
         this.objectMapper = new ObjectMapper();
@@ -43,7 +44,9 @@ public class SensorController {
         List<SensorInfo> updatedSensors = sensorService.update(sensors.stream().toList());
 
         try {
-            webSocketNotificationService.notifyWebSocketEndpoint("sensor",objectMapper.writeValueAsString(updatedSensors));
+            String sensorsDefinition = objectMapper.writeValueAsString(updatedSensors);
+            webSocketNotificationService.notifyWebSocketEndpoint("sensor", sensorsDefinition);
+            mqttNotificationService.notifyMqttTopic(MqttNotificationService.MQTT_SIMULATION_SENSOR_TOPIC, adaptSensorsForMqtt(sensorService.getAllStates()));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -87,5 +90,19 @@ public class SensorController {
         return ResponseEntity.ok(sensorService.getStateById(id));
     }
 
-
+    private String adaptSensorsForMqtt(List<SensorInfo> sensors){
+        List<Map<String,Object>> list = new ArrayList<>();
+        for (SensorInfo sensorInfo: sensors){
+            Map<String,Object> map = new HashMap<>();
+            map.put("cid",sensorInfo.getCid());
+            map.put("i",sensorInfo.getIntensity());
+            map.put("t",sensorInfo.getType());
+            list.add(map);
+        }
+        try {
+            return objectMapper.writeValueAsString(list);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
