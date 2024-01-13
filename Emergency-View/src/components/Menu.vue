@@ -31,8 +31,6 @@ export default {
   <div class="menu">
     <div class="wrapperLocation"><v-select v-model="location" :items="locations" label="Choose location !" v-on:update:model-value="updateMapPositions($event)"></v-select></div>
     <div class="wrapperCaserne"><v-checkbox dark label="Display caserne" class="dispCaserne" v-on:click="changeCaserneState($event)"></v-checkbox></div>
-    <div class="wrapperSensor"><v-checkbox dark label="Display Sensor" class="dispSensor" v-on:click="changeSensorState($event)"></v-checkbox></div>
-    <div class="wrapperTruck"><v-checkbox dark label="Display truck" class="dispTruck" v-on:click="changeTruckState($event)"></v-checkbox></div>
     <div class="wrapperButton"><v-btn depressed color="error" class="btnConnectFire" v-on:click="connectFire()">Connect Fire</v-btn><v-btn depressed color="#1E88E5" class="btnConnectTruck">Connect Truck</v-btn></div>
   </div>
 </template>
