@@ -22,16 +22,20 @@ public class Sensor {
   @Column(name = "alias")
   private String alias;
 
+  @Column(name = "intensity")
+  private int intensity;
+
 
   @ManyToOne
   private City city;
 
-  public Sensor(Long cid, double lat, double lon, String adresse, String alias, City city) {
+  public Sensor(Long cid, double lat, double lon, String adresse, String alias,int intensity, City city) {
     this.cid = cid;
     this.lat = lat;
     this.lon = lon;
     this.adresse = adresse;
     this.alias = alias;
+    this.intensity = intensity;
     this.city = city;
   }
 
@@ -66,9 +70,11 @@ public class Sensor {
 
   public void setAlias(String alias) { this.alias = alias; }
 
-  public City getCity() {
-    return city;
-  }
+  public int getIntensity() { return intensity; }
+
+  public void setIntensity(int intensity) { this.intensity = intensity; }
+
+  public City getCity() { return city; }
 
   public void setCity(City city) { this.city = city; }
 
@@ -84,6 +90,8 @@ public class Sensor {
             + this.lon
             + " adresse="
             + this.adresse
+            + " intensité="
+            + this.intensity
             + " idVille="
             + this.city.getId()
             + "]";

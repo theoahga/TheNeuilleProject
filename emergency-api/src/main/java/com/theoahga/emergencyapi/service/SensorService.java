@@ -77,6 +77,7 @@ public class SensorService {
                 sensorJpa.setLon(sensor.getLon());
                 sensorJpa.setAdresse(sensor.getAdresse());
                 sensorJpa.setAlias(sensor.getAlias());
+                sensorJpa.setIntensity(sensor.getIntensity());
                 sensorJpa.setCity(sensor.getCity());
 
                 sensorRepository.save(sensorJpa);
