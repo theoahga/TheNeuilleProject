@@ -76,7 +76,6 @@ export default {
       } else {
         this.sensorArray = []
       }
-      console.log(this.sensorArray);
     },
     connectWSFireSensor : function () {
       let self = this;
@@ -85,21 +84,8 @@ export default {
       stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/sensor', function (greeting) {
-          JSON.parse(greeting.body).forEach((element) => {
-            if(self.sensorArray.length !== 0){
-              let presence = false;
-              for(let i=0;i<self.sensorArray.length;i++){
-                if(self.sensorArray[i].cid === element.cid){
-                  console.log("Element déjà présent dans la liste");
-                  self.sensorArray[i] = element;
-                  presence = true;
-                  return;
-                }
-              }
-              if(presence === false){self.sensorArray.push(element);}
-            } else{self.sensorArray.push(element);}
-          });
-          console.log(self.sensorArray);
+          self.sensorArray = [];
+          self.getSensor(["Affiche",true]);
         });
       });
     }

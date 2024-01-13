@@ -41,7 +41,6 @@ export default {
 
         console.log("Ajout des markers de station !");
         this.station.forEach((element) => {
-          console.log(element);
           let m = new L.marker([element.lat,element.lon],{icon:caserneIcon}).bindPopup(element.address).addTo(this.map);
           this.markerStationArray.push(m);
         })
@@ -56,6 +55,7 @@ export default {
     sensor(){
       if(this.sensor.length != 0){
 
+        //Création des icons perso
         let sensorIcon = L.icon({
           iconUrl: sensorIcons,
           iconSize: [30,30],
@@ -70,6 +70,7 @@ export default {
         this.sensor.forEach((element) => {
           let m;
           if(element.intensity !== 0){
+            console.log("FIRE");
             m = new L.marker([element.lat,element.lon],{icon:flameIcon}).bindPopup(element.adresse).addTo(this.map);
           }else{
             m = new L.marker([element.lat,element.lon],{icon:sensorIcon}).bindPopup(element.adresse).addTo(this.map);
