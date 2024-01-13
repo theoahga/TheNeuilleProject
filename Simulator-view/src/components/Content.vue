@@ -74,13 +74,16 @@ export default {
       store.displaySensor = !checkBox;
       let displaySensorValue = store.displaySensor;
       console.log(`Display Sensor : ${displaySensorValue}`);
-      this.connectFire();
+
     },
     getSensors : async function () {
       this.clearArray();
       if(store.displaySensor === true){
+        console.log("AAAAAAA");
         await axios.get(`http://localhost:10000/simulator/api/sensor/getDescriptionByIdVille?id=${store.selectedSDIS}`)
             .then(response => {
+              console.log(store.selectedSDIS);
+              console.log(response);
               let tabSensor = response.data;
               tabSensor.forEach((element) => {
                 store.items.push(element);
@@ -89,6 +92,7 @@ export default {
               this.updatePosition(store.selectedSDIS);
             })
             .catch(error => console.log(error))
+        this.connectFire();
       }else {
         this.updatePosition(store.selectedSDIS);
       }
@@ -178,7 +182,7 @@ export default {
           v-on:change="changeSDIS"
          ></v-select>
       </v-app>
-      <v-btn depressed color="error" class="btn-apply" v-on:click="getSensors">Apply</v-btn>
+      <v-btn depressed color="error" class="btn-apply" v-on:click="getSensors">Apply & Connect WS</v-btn>
     </div>
     <div class="map-wrapper">
         <l-map
