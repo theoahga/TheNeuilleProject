@@ -3,6 +3,12 @@ import Menu from "@/components/Menu.vue";
 import Map from "@/components/Map.vue";
 import axios from "axios";
 
+//WebSocket part
+import SockJS from "sockjs-client/dist/sockjs";
+import Stomp from "webstomp-client";
+
+let stompClient = null;
+
 export default {
   data() {
     return {
@@ -54,6 +60,17 @@ export default {
       } else {
         this.sensorArray = []
       }
+    },
+    connectWSFireSensor : function () {
+      let self = this;
+      let socket = new SockJS('http://127.0.0.1:10001/emergency/api/ws');
+      stompClient = Stomp.over(socket);
+      stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/topic/sensor', function (greeting) {
+          console.log(JSON.parse(greeting.body));
+        });
+      });
     }
   }
 }
@@ -61,7 +78,7 @@ export default {
 
 <template>
   <div class="wrapper-content">
-    <Menu @change-state-caserne="updateStateCaserne($event)" @change-state-truck="updateStateTruck($event)" @change-map-position="updateMapPositions($event)" @change-sensor-truck="updateStateSensor($event)"/>
+    <Menu @change-state-caserne="updateStateCaserne($event)" @change-state-truck="updateStateTruck($event)" @change-map-position="updateMapPositions($event)" @change-sensor-truck="updateStateSensor($event)" @connect-websocket-fireSensor="connectWSFireSensor()"/>
     <Map :center="positionMap" :station="stationArray" :sensor="sensorArray"/>
   </div>
 </template>
