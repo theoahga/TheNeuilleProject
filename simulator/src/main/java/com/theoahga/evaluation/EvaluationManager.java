@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theoahga.exception.PostRequestException;
 import com.theoahga.http.SimulatorHttp;
+import com.theoahga.model.Itinary;
 import com.theoahga.model.fire.api.Fire;
 import com.theoahga.model.fire.api.FireInfo;
 import com.theoahga.model.sensor.api.Sensor;
@@ -22,10 +23,11 @@ public class EvaluationManager {
 
   private Set<Object> changedSensors;
   private Set<Object> changedFires;
+  private Map<Integer, Itinary> itinaryMap = new HashMap<>();
 
   public EvaluationManager(List<Sensor> sensors, Map<String, List<Coordinate>> fireSquareBounds) {
     this.sensorEvaluator = new SensorEvaluator(sensors, fires);
-    this.fireEvaluator = new FireEvaluator(fireSquareBounds,fires);
+    this.fireEvaluator = new FireEvaluator(fireSquareBounds,fires,sensors, itinaryMap);
 
     this.objectMapper = new ObjectMapper();
   }

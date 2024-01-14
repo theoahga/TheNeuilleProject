@@ -66,4 +66,14 @@ public class InterventionController {
 
         return ResponseEntity.ok(intervention);
     }
+
+    @GetMapping(value = "/getActiveIntervention")
+    public ResponseEntity<Object> getActiveInterventionInPending(@RequestParam Long cid) {
+        return ResponseEntity.ok(this.interventionService.getActiveInterventionInPending(cid));
+    }
+
+    @GetMapping(value = "/setInterventionProgressing")
+    public ResponseEntity<Intervention> setInterventionProgressing(@RequestParam Long id) {
+        return ResponseEntity.ok(this.interventionService.setInterventionProgressing(id));
+    }
 }

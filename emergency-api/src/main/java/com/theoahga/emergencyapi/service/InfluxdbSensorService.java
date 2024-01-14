@@ -106,7 +106,9 @@ public class InfluxdbSensorService {
         }
 
         if (idsToRemove.size() > 0) {
-            result.stream().filter(i -> !idsToRemove.contains((Integer) i.get("cid"))).collect(Collectors.toList());
+            List<Map<String, Object>> objectTodelete = new ArrayList<>();
+            objectTodelete = result.stream().filter(i -> idsToRemove.contains(i.get("cid"))).collect(Collectors.toList());
+            result.removeAll(objectTodelete);
         }
 
         return result;

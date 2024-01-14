@@ -46,7 +46,7 @@ public class SensorController {
         try {
             String sensorsDefinition = objectMapper.writeValueAsString(updatedSensors);
             webSocketNotificationService.notifyWebSocketEndpoint("sensor", sensorsDefinition);
-            mqttNotificationService.notifyMqttTopic(MqttNotificationService.MQTT_SIMULATION_SENSOR_TOPIC, adaptSensorsForMqtt(sensorService.getAllStates()));
+            mqttNotificationService.notifyMqttTopic(MqttNotificationService.MQTT_SIMULATION_SENSOR_TOPIC, adaptSensorsForMqtt(updatedSensors));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

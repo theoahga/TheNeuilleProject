@@ -33,7 +33,7 @@ public class Intervention {
     public Intervention(int cid) {
         this.id = -1;
         this.startDate = new Date();
-        this.status = Status.PROGRESSING;
+        this.status = Status.PENDING;
         this.cid = cid;
 
         this.units = new ArrayList<>();
