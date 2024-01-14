@@ -5,6 +5,7 @@ import {onMounted} from "vue";
 import {ca} from "vuetify/locale";
 import caserneIcons from "./../assets/caserne.png";
 import sensorIcons from "./../assets/sensor.png";
+import flameIcons from "./../assets/flame.png";
 
 export default {
   data() {
@@ -40,7 +41,6 @@ export default {
 
         console.log("Ajout des markers de station !");
         this.station.forEach((element) => {
-          console.log(element);
           let m = new L.marker([element.lat,element.lon],{icon:caserneIcon}).bindPopup(element.address).addTo(this.map);
           this.markerStationArray.push(m);
         })
@@ -55,15 +55,26 @@ export default {
     sensor(){
       if(this.sensor.length != 0){
 
+        //Création des icons perso
         let sensorIcon = L.icon({
           iconUrl: sensorIcons,
           iconSize: [30,30],
-        })
+        });
+
+        let flameIcon = L.icon({
+          iconUrl: flameIcons,
+          iconSize: [30,30],
+        });
 
         console.log("Ajout des markers sensor !");
         this.sensor.forEach((element) => {
-          console.log(element);
-          let m = new L.marker([element.lat,element.lon],{icon:sensorIcon}).bindPopup(element.adresse).addTo(this.map);
+          let m;
+          if(element.intensity !== 0){
+            console.log("FIRE");
+            m = new L.marker([element.lat,element.lon],{icon:flameIcon}).bindPopup(element.adresse).addTo(this.map);
+          }else{
+            m = new L.marker([element.lat,element.lon],{icon:sensorIcon}).bindPopup(element.adresse).addTo(this.map);
+          }
           this.markerSensorArray.push(m);
         })
       }else if(this.sensor.length === 0){
