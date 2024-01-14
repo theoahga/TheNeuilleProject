@@ -55,11 +55,28 @@ export default {
       if(e[1] === true) {
         await axios.get(`http://localhost:10001/emergency/api/sensor/getAll`)
           .then((response) => {
-            this.sensorArray = response.data;
+            if(this.sensorArray.length !== 0){
+              let presence = false;
+              response.data.forEach((element) => {
+                for(let i=0 ; i< this.sensorArray.length ; i++){
+                  if(element.cid === this.sensorArray[i].cid){
+                    console.log("Element déjà présent dans la liste");
+                    presence = true;
+                    return;
+                  }
+                }
+                if(presence === false){
+                  this.sensorArray.push(element);
+                }
+              })
+            }else {
+              this.sensorArray = response.data;
+            }
           });
       } else {
         this.sensorArray = []
       }
+      console.log(this.sensorArray);
     },
     connectWSFireSensor : function () {
       let self = this;
@@ -68,7 +85,21 @@ export default {
       stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/sensor', function (greeting) {
-          console.log(JSON.parse(greeting.body));
+          JSON.parse(greeting.body).forEach((element) => {
+            if(self.sensorArray.length !== 0){
+              let presence = false;
+              for(let i=0;i<self.sensorArray.length;i++){
+                if(self.sensorArray[i].cid === element.cid){
+                  console.log("Element déjà présent dans la liste");
+                  self.sensorArray[i] = element;
+                  presence = true;
+                  return;
+                }
+              }
+              if(presence === false){self.sensorArray.push(element);}
+            } else{self.sensorArray.push(element);}
+          });
+          console.log(self.sensorArray);
         });
       });
     }
