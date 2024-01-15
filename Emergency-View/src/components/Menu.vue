@@ -9,18 +9,15 @@ export default {
     changeCaserneState: function (e){
       this.$emit("change-state-caserne",e.target.checked);
     },
-    changeTruckState: function (e){
-      this.$emit("change-state-truck",e.target.checked);
-    },
-    changeSensorState: function (e){
-      this.$emit("change-sensor-truck",{1:e.target.checked,2:this.actualPosition});
-    },
     updateMapPositions: function (e){
       this.actualPosition = e;
       this.$emit("change-map-position",e)
     },
     connectFire: function (){
       this.$emit("connect-websocket-fireSensor");
+    },
+    connectTruck: function (){
+      this.$emit("connect-websocket-truckGPS");
     }
   }
 }
@@ -31,7 +28,7 @@ export default {
   <div class="menu">
     <div class="wrapperLocation"><v-select v-model="location" :items="locations" label="Choose location !" v-on:update:model-value="updateMapPositions($event)"></v-select></div>
     <div class="wrapperCaserne"><v-checkbox dark label="Display caserne" class="dispCaserne" v-on:click="changeCaserneState($event)"></v-checkbox></div>
-    <div class="wrapperButton"><v-btn depressed color="error" class="btnConnectFire" v-on:click="connectFire()">Connect Fire</v-btn><v-btn depressed color="#1E88E5" class="btnConnectTruck">Connect Truck</v-btn></div>
+    <div class="wrapperButton"><v-btn depressed color="error" class="btnConnectFire" v-on:click="connectFire()">Connect Fire</v-btn><v-btn depressed color="#1E88E5" class="btnConnectTruck" v-on:click="connectTruck()">Connect Truck</v-btn></div>
   </div>
 </template>
 

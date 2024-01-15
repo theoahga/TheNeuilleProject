@@ -15,6 +15,7 @@ export default {
       positionMap: [45.766914, 4.830913],
       stationArray: [],
       sensorArray: [],
+      truckArray: [],
     }
   },
   components: {
@@ -88,6 +89,18 @@ export default {
           self.getSensor(["Affiche",true]);
         });
       });
+    },
+    connectTruckGPS : function (){
+      let self = this;
+      let socket = new SockJS('http://localhost:10000/simulation/api/ws');
+      stompClient = Stomp.over(socket);
+      stompClient.connect({},function (frame){
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/topic/truck',function (greeting){
+          self.truckArray = [];
+          self.truckArray = greeting.body;
+        });
+      });
     }
   }
 }
@@ -95,8 +108,8 @@ export default {
 
 <template>
   <div class="wrapper-content">
-    <Menu @change-state-caserne="updateStateCaserne($event)" @change-state-truck="updateStateTruck($event)" @change-map-position="updateMapPositions($event)" @change-sensor-truck="updateStateSensor($event)" @connect-websocket-fireSensor="connectWSFireSensor()"/>
-    <Map :center="positionMap" :station="stationArray" :sensor="sensorArray"/>
+    <Menu @change-state-caserne="updateStateCaserne($event)" @change-state-truck="updateStateTruck($event)" @change-map-position="updateMapPositions($event)" @change-sensor-truck="updateStateSensor($event)" @connect-websocket-fireSensor="connectWSFireSensor()" @connect-websocket-truckGPS="connectTruckGPS()"/>
+    <Map :center="positionMap" :station="stationArray" :sensor="sensorArray" :truck="truckArray"/>
   </div>
 </template>
 
