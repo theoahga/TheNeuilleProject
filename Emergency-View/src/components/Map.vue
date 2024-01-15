@@ -6,6 +6,7 @@ import {ca} from "vuetify/locale";
 import caserneIcons from "./../assets/caserne.png";
 import sensorIcons from "./../assets/sensor.png";
 import flameIcons from "./../assets/flame.png";
+import truckIcons from "./../assets/firetruck.png"
 
 export default {
   data() {
@@ -13,12 +14,14 @@ export default {
       map:null,
       markerStationArray:[],
       markerSensorArray:[],
+      markerTruckArray:[],
     }
   },
   props: {
     center: {default:[45.766914, 4.830913]},
     station: {default:[]},
     sensor: {default:[]},
+    truck:{default:[]},
   },
   mounted() {
     this.map = L.map('map').setView(this.center, 15);
@@ -83,6 +86,29 @@ export default {
           this.map.removeLayer(this.markerSensorArray[i]);
         }
         this.markerSensorArray = [];
+      }
+    },
+    truck(){
+
+      if(this.truck.length !== 0){
+        //Création de l'icone de camion
+        let truckIcon = L.icon({
+          iconUrl: sensorIcons,
+          iconSize: [30,30],
+        });
+
+        console.log("Ajout des markers de camions");
+
+        this.truck.forEach((element) => {
+          let m = new L.marker([element.lat,element.lon],{icon:truckIcon}).addTo(this.map);
+          this.markerTruckArray.push(m);
+        })
+      }else if(this.sensor.length === 0){
+        console.log("Suppression des markers");
+        for(let i=0;i<this.markerTruckArray.length;i++){
+          this.map.removeLayer(this.markerTruckArray[i]);
+        }
+        this.markerTruckArray = [];
       }
     }
   }
