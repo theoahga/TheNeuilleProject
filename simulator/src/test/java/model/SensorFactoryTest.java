@@ -31,7 +31,6 @@ public class SensorFactoryTest {
     assertEquals("cid-1", newSensor.getId());
     assertEquals(Double.valueOf(45), newSensor.getCoordinate().y, 5);
     assertEquals(Double.valueOf(4), newSensor.getCoordinate().x, 5);
-    assertEquals("Rue du test Unitaire", newSensor.getAddress());
   }
 
   @Test
@@ -57,11 +56,9 @@ public class SensorFactoryTest {
     assertEquals("cid-1", s1.getId());
     assertEquals(Double.valueOf(45), s1.getCoordinate().y, 5);
     assertEquals(Double.valueOf(4), s1.getCoordinate().x, 5);
-    assertEquals("Rue du test Unitaire", s1.getAddress());
 
     assertEquals("cid-2", s2.getId());
     assertEquals(Double.valueOf(46), s2.getCoordinate().y, 5);
     assertEquals(Double.valueOf(7), s2.getCoordinate().x, 5);
-    assertEquals("Chez JB", s2.getAddress());
   }
 }

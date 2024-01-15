@@ -8,10 +8,7 @@ import com.theoahga.emergencyapi.repository.SensorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -69,5 +66,24 @@ public class SensorService {
         return sensorRepository.getByCid(cid);
     }
 
+    public List<Sensor> update(List<Sensor> sensors){
+        List<Sensor> updatedSensor = new ArrayList<>();
+        for(Sensor sensor : sensors){
+            Optional<Sensor> optional = sensorRepository.findById(sensor.getCid());
+            if(optional.isPresent()){
+                Sensor sensorJpa = optional.get();
 
+                sensorJpa.setLat(sensor.getLat());
+                sensorJpa.setLon(sensor.getLon());
+                sensorJpa.setAdresse(sensor.getAdresse());
+                sensorJpa.setAlias(sensor.getAlias());
+                sensorJpa.setIntensity(sensor.getIntensity());
+                sensorJpa.setCity(sensor.getCity());
+
+                sensorRepository.save(sensorJpa);
+                updatedSensor.add(sensorJpa);
+            }
+        }
+        return updatedSensor;
+    }
 }
